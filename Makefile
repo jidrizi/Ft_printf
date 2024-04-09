@@ -6,7 +6,7 @@
 #    By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/01 14:37:45 by jidrizi           #+#    #+#              #
-#    Updated: 2024/04/09 16:48:49 by jidrizi          ###   ########.fr        #
+#    Updated: 2024/04/10 01:34:04 by jidrizi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -std=c99
 
-SRC =  ft_printf.c 
+SRC =  ft_printf.c coolfunctions.c hexshii.c 
 
 OBJS = $(SRC:.c=.o)
 

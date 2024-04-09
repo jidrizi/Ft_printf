@@ -6,15 +6,15 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:42:21 by jidrizi           #+#    #+#             */
-/*   Updated: 2024/04/10 01:13:16 by jidrizi          ###   ########.fr       */
+/*   Updated: 2024/04/10 01:42:58 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	putchar(char c)
+int	putchar(int c)
 {
-	write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
 static int	putnum(unsigned int x)
@@ -23,17 +23,26 @@ static int	putnum(unsigned int x)
 
 	y = 0;
 	if (x >= 10)
-		x += putnum (x / 10);
-	x += putchar ((x % 10) + '0');
-	return (x);
+		y += putnum (x / 10);
+	y += putchar ((x % 10) + '0');
+	return (y);
 }
 
 int	put_unsigned(unsigned int z)
 {
-	if (x == 0)
-		return (putchar('0'));
+	int	x;
+
+	x = 0;
+	if (z == 0)
+	{
+		x += putchar('0');
+		return (x);
+	}
 	else
-		return (putnum(z));
+	{
+		x += putnum(z);
+		return (x);
+	}
 }
 
 int	putstr(char *c)
@@ -42,7 +51,10 @@ int	putstr(char *c)
 
 	x = 0;
 	if (!c)
+	{
 		x += write (1, "(null)", 6);
+		return (x);
+	}
 	while (*c)
 	{
 		x += putchar(*c);

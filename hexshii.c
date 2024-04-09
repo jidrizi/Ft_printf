@@ -6,7 +6,7 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:49:59 by jidrizi           #+#    #+#             */
-/*   Updated: 2024/04/10 01:17:37 by jidrizi          ###   ########.fr       */
+/*   Updated: 2024/04/10 01:53:51 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ int	hex_conversion_therapy(unsigned long int x, char *hexbase)
 	y = 0;
 	if (x >= 16)
 	{
-		y += hex_conversion_therapy (x % 16, hexbase);
+		y += hex_conversion_therapy (x / 16, hexbase);
 		putchar (hexbase[x % 16]);
 	}
 	else
 		putchar (hexbase[x % 16]);
+	if (y == -1)
+		return (-1);
 	y++;
 	return (y);
 }

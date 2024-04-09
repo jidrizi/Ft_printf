@@ -6,44 +6,47 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:49:59 by jidrizi           #+#    #+#             */
-/*   Updated: 2024/04/10 00:55:24 by jidrizi          ###   ########.fr       */
+/*   Updated: 2024/04/10 01:17:37 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-int putnbr(int x)
+
+int	putnbr(int x)
 {
-	int y;
-	char nbr;
+	int		y;
+	char	nbr;
 
 	y = 0;
-	if ( x == -2147483648)
+	if (x == -2147483648)
 		y += write (1, "-2147483648", 11);
 	else
-		if ( x < 0)
+	{
+		if (x < 0)
 		{
 			y += write (1, "-", 1);
 			x = -x;
 		}
-		if ( x >= 10)
+		if (x >= 10)
 		{
 			y += putnbr(x / 10);
 			y += putnbr(x % 10);
 		}
-		else 
+		else
 		{
 			nbr = x + '0';
-			y += write (1,&nbr, 1);
+			y += write (1, &nbr, 1);
 		}
+	}
 	return (y);
 }
 
-int hex_conversion_therapy (unsigned long int x, char *hexbase)
+int	hex_conversion_therapy(unsigned long int x, char *hexbase)
 {
-	int y;
+	int	y;
 
 	y = 0;
-	if ( x >= 16)
+	if (x >= 16)
 	{
 		y += hex_conversion_therapy (x % 16, hexbase);
 		putchar (hexbase[x % 16]);
@@ -54,9 +57,9 @@ int hex_conversion_therapy (unsigned long int x, char *hexbase)
 	return (y);
 }
 
-int makehex(unsigned long int, const char string)
+int	makehex(unsigned long int x, const char string)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	if (string == 'x')
@@ -66,9 +69,9 @@ int makehex(unsigned long int, const char string)
 	return (y);
 }
 
-int put_ptr(void *ptr)
+int	put_ptr(void *ptr)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	x += write (1, "0x", 2);

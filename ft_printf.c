@@ -6,7 +6,7 @@
 /*   By: jidrizi <jidrizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:04:23 by jidrizi           #+#    #+#             */
-/*   Updated: 2024/04/10 01:08:00 by jidrizi          ###   ########.fr       */
+/*   Updated: 2024/04/10 01:13:55 by jidrizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-int print_handler(va_list args, const char *str)
+
+int	print_handler(va_list args, const char *str)
 {
 	if (*str == '\0')
 		return (-1);
@@ -25,20 +26,20 @@ int print_handler(va_list args, const char *str)
 	if (*str == 'd' || *str == 'i')
 		return (putnbr (va_arg(arguments, int)));
 	if (*str == 'u')
-		return (put_unsigned (va_arg (arguments, unsigned int)))
+		return (put_unsigned (va_arg (arguments, unsigned int)));
 	if (*str == '%')
 		return (write (1, '%', 1));
 	if (*str == 'X' || *str == 'x')
 		return (makehex (va_arg (arguments, (unsigned int), *str)));
 	if (*str == 'p')
-		return (put_ptr (va_arg (argument,(void *))));
+		return (put_ptr (va_arg (argument, (void *))));
 	return (-1);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	int x;
-	va_list arguments;
+	int		x;
+	va_list	arguments;
 
 	va_start (arguments, str);
 	x = 0;
@@ -50,7 +51,7 @@ int	ft_printf(const char *str, ...)
 			x += print_handler(arguments, str);
 		}
 		else
-			x += write (1, str , 1);
+			x += write (1, str, 1);
 		str++;
 	}
 	va_end(arguments);
